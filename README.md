@@ -5,8 +5,8 @@ my Ubuntu-installations. Since I am hording ubuntu-vms
 which are all tailored for different purposes, I figured
 it would be useful to put my scripts into a VCS.     
 
-The idea was inspired by a blogpost I once read, that I
-am not able to find right now.       
+The idea was probably inspired by this blogpost
+http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/       
 
 ## Current modifications
 - aliases for nano 
