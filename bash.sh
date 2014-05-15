@@ -1,4 +1,7 @@
 #aliases
+unalias git
+unalias g
+unalias nano
 alias g='git'
 alias nano='nano -c -T4'
 alias pico='nano'
