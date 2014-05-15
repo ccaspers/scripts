@@ -14,15 +14,17 @@ am not able to find right now.
 - simplified setup for my .gitconfig
 
 ## Usage
-1. open terminal
-* ```
+Open terminal, then clone the repository
+```
 git clone https://github.com/ccaspers/scripts.git
 ```
-* ```bash
+open the repository's folder
+```bash
 cd scripts
 ```
-* ```bash
+run the installer
+```bash
 chmod +x install.sh
 ./install.sh
 ```
-* follow instructions
+After that, follow the installer's instructions.
