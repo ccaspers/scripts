@@ -1,7 +1,7 @@
 #aliases
-unalias git
-unalias g
-unalias nano
+unalias git > /dev/null 2>&1
+unalias g > /dev/null 2>&1
+unalias nano > /dev/null 2>&1
 alias g='git'
 alias nano='nano -c -T4'
 alias pico='nano'
