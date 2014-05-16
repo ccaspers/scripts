@@ -3,6 +3,7 @@
 [credential]
 	helper = cache --timeout=3600
 [alias]
+	pom = push origin master
 	st = status
 	co = checkout
 	ci = commit
