@@ -1,0 +1,7 @@
+set autoindent
+set fill 100
+set multibuffer
+unset nowrap
+set smooth
+set tabsize 4
+set tabstospaces
