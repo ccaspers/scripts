@@ -6,6 +6,7 @@ alias g='git'
 alias nano='nano -c -T4'
 alias pico='nano'
 alias n='nano'
+alias agu='sudo apt-get update && sudo apt-get upgrade'
 
 #prompt
 LINE1="\n\[\e[32;1m\](\[\e[37;1m\]\u\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m\])-(\[\e[37;1m\]\w\[\e[32;1m\])"
