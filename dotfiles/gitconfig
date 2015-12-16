@@ -23,3 +23,5 @@
     postBuffer = 524288000
 [push]
 	default = matching
+[http]
+	postBuffer = 524288000
