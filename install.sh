@@ -2,12 +2,19 @@
 CWD=$(dirname $(readlink -f $0))
 
 # Setup bashscripts
-BASHSCRIPTS=$HOME/.bash_customization
-touch $HOME/.bashrc
-if ! cat $HOME/.bashrc | grep -q ". $BASHSCRIPTS"; then
-  ln -s $CWD/bash.sh $BASHSCRIPTS
-  echo -e "\n# Sourcing custom modifications \n# Visit https://github.com/ccaspers/scripts for more info\n. $BASHSCRIPTS" >> $HOME/.bashrc
-  echo " >> Scripts added to .bashrc"
+BASHSCRIPTS=$CWD/bash.sh
+BASHRC=$HOME/.bashrc
+
+touch $BASHRC
+if ! cat $BASHRC | grep -q "$BASHSCRIPTS"; then
+  # Don't replace tabs with spaces in here-doc
+  cat <<-EOS >> $BASHRC
+	
+	# Sourcing custom modifications
+	# Visit https://github.com/ccaspers/scripts for more info
+	source $BASHSCRIPTS
+	EOS
+  echo ">> Scripts added to .bashrc"
 else
   echo " >> Scripts already linked"
 fi
