@@ -20,4 +20,6 @@
 	name = Christian Caspers
 	email = x.caspers@gmail.com
 [http]
-	postBuffer = 524288000
+    postBuffer = 524288000
+[push]
+	default = matching
