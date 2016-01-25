@@ -17,3 +17,7 @@ PS1=$LINE1$LINE2
 #load shell functions
 fork() { (setsid "$@" &>/dev/null); }
 export -f fork
+
+#add .local/bin to path
+export PATH=$PATH:~/.local/bin
+
