@@ -18,7 +18,7 @@
     unstage = reset HEAD
 [user]
 	name = Christian Caspers
-	email = x.caspers@gmail.com
+	email = (none)
 [http]
     postBuffer = 524288000
 [push]
