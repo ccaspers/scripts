@@ -1,6 +1,7 @@
 [core]
 	editor = nano
 	autocrlf = input
+	precomposeunicode = true
 [credential]
 	helper = cache --timeout=3600
 [alias]
@@ -18,7 +19,7 @@
     unstage = reset HEAD
 [user]
 	name = Christian Caspers
-	email = (none)
+	email = ccaspers@users.noreply.github.com
 [http]
     postBuffer = 524288000
 [push]
