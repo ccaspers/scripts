@@ -23,8 +23,7 @@ LINE2="\n\[\e[32;1m\](\[\e[37;1m\]! \!\[\e[32;1m\])-> \[\e[0m\]"
 PS1=$LINE1$LINE2
 
 #load shell functions
-fork() { (setsid "$@" &>/dev/null); }
-export -f fork
+source functions.sh
 
 #add .local/bin to path
 export PATH=$PATH:~/.local/bin
