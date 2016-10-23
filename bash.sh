@@ -1,3 +1,5 @@
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 #aliases
 unalias git > /dev/null 2>&1
 unalias g > /dev/null 2>&1
@@ -23,7 +25,7 @@ LINE2="\n\[\e[32;1m\](\[\e[37;1m\]! \!\[\e[32;1m\])-> \[\e[0m\]"
 PS1=$LINE1$LINE2
 
 #load shell functions
-source functions.sh
+source $DIR/functions.sh
 
 #add .local/bin to path
 export PATH=$PATH:~/.local/bin
