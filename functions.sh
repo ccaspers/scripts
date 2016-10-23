@@ -22,3 +22,8 @@ mirror() {
     $@
 }
 export -f mirror
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  open() { fork xdg-open "$@"; }
+  export -f open
+fi
