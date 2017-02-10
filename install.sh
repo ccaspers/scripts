@@ -14,6 +14,7 @@ else
 fi
 
 BASHSCRIPTS=$CWD/bash.sh
+BASHFUNCTIONS=$CWD/functions.sh
 
 touch $INITFILE
 if ! cat $INITFILE | grep -q "$BASHSCRIPTS"; then
@@ -23,7 +24,8 @@ if ! cat $INITFILE | grep -q "$BASHSCRIPTS"; then
 	# Sourcing personal configuration
 	# Visit https://github.com/ccaspers/scripts for more info
 	source $BASHSCRIPTS
-	EOS
+    source $BASHFUNCTIONS
+   	EOS
   echo ">> Scripts added to $INITFILE"
 else
   echo " >> Scripts already linked"

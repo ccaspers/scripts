@@ -1,7 +1,4 @@
-# fork-function to detach processes conveniently
-fork() { (setsid "$@" &>/dev/null); }
-export -f fork
-
+#!/usr/bin/env bash
 # add mirror function to download websites recursively
 mirror() {
   if ! [[ "$@" =~ ^https?://* ]]; then
@@ -21,9 +18,5 @@ mirror() {
     --no-check-certificate\
     $@
 }
-export -f mirror
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  open() { fork xdg-open "$@"; }
-  export -f open
-fi
+mirror $@
