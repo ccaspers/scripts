@@ -3,7 +3,7 @@
 	autocrlf = input
 	precomposeunicode = true
 [credential]
-	helper = cache --timeout=3600
+	helper = osxkeychain --timeout=7200
 [alias]
 	pom = push origin master
 	st = status
