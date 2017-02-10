@@ -36,12 +36,6 @@ LINE1="\n\[\e[32;1m\](\[\e[37;1m\]\u\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m
 LINE2="\[\e[32;1m\](\[\e[37;1m\]! \!\[\e[32;1m\])-> \[\e[0m\]"
 PS1=$LINE1$LINE2
 
-<<<<<<< HEAD
-#load shell functions
-source $DIR/functions.sh
-
-=======
->>>>>>> refactor slightly
 #add .local/bin to path
 export PATH=$PATH:~/.local/bin
 

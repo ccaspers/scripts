@@ -14,7 +14,6 @@ else
 fi
 
 BASHSCRIPTS=$CWD/bash.sh
-BASHFUNCTIONS=$CWD/functions.sh
 
 touch $INITFILE
 if ! cat $INITFILE | grep -q "$BASHSCRIPTS"; then
@@ -24,20 +23,33 @@ if ! cat $INITFILE | grep -q "$BASHSCRIPTS"; then
 	# Sourcing personal configuration
 	# Visit https://github.com/ccaspers/scripts for more info
 	source $BASHSCRIPTS
-    source $BASHFUNCTIONS
-   	EOS
+	EOS
   echo ">> Scripts added to $INITFILE"
 else
-  echo " >> Scripts already linked"
-  exit 0
+  echo ">> Scripts already linked"
 fi
 
-# Setup symlinks for dotfiles
+echo ">> setting symlinks for dotfiles"
 for file in $CWD/dotfiles/*
 do
   name=$(basename $file)
   link="$HOME/.$name"
-  echo " >> linking $link to $file"
-  rm -f $link
-  ln -s $file $link
+  if [ ! -e $link ]; then
+    echo " >> linking $link to $file"
+    ln -s $file $link
+  fi
+done
+
+# link commands to ~/.local/bin
+mkdir -p $HOME/.local/bin 
+
+echo ">> setting symlinks for custom commands"
+for cmd in $CWD/bin/*
+do
+  name=$(basename $cmd)
+  link=$HOME/.local/bin/$name
+  if [ ! -e $link ]; then
+    echo " >> linking $link to $cmd"
+    ln -s $cmd $link
+  fi
 done
