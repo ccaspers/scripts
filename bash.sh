@@ -10,6 +10,7 @@ alias pico='nano'
 alias n='nano'
 alias agu='sudo apt-get update && sudo apt-get upgrade'
 alias agi='sudo apt-get install'
+alias ls='ls --sort=extension --group-directories-first --color=auto -h'
 
 unalias l > /dev/null 2>&1
 unalias la > /dev/null 2>&1
