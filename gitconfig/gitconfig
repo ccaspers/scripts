@@ -2,8 +2,8 @@
 	editor = nano
 	autocrlf = input
 	precomposeunicode = true
-[credential]
-	helper = osxkeychain --timeout=7200
+[include]
+	path=~/.gitconfig.os
 [alias]
 	pom = push origin master
 	st = status

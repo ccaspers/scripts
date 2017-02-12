@@ -1,34 +1,41 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 IFS=$'\n\t'
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   CWD=$(dirname $(readlink -f $0))
-  INITFILE=$HOME/.bashrc
+  initfile=$HOME/.bashrc
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   CWD=$(dirname $(greadlink -f $0))
-  INITFILE=$HOME/.profile
+  initfile=$HOME/.profile
 else
   echo "$OSTYPE is currently not supported"
   exit 1
 fi
 
-BASHSCRIPTS=$CWD/bash.sh
+# --------------------------------------------------------------
+# BASHCONFIG : Setup usual aliases
+# --------------------------------------------------------------
+bash_config=$CWD/bash.sh
+touch $initfile
+marker_start="# CC:DOTFILES:START"
+marker_end="# CC:DOTFILES:END"
+sed -i.backup "/$marker_start/,/$marker_end/d" $initfile 
 
-touch $INITFILE
-if ! cat $INITFILE | grep -q "$BASHSCRIPTS"; then
-  # Don't replace tabs with spaces in here-doc
-  cat <<-EOS >> $INITFILE
+bash_import="\n$marker_start 
+# Sourcing personal configuration
+# Visit https://github.com/ccaspers/scripts for more info
+source $bash_config
+$marker_end"
 
-	# Sourcing personal configuration
-	# Visit https://github.com/ccaspers/scripts for more info
-	source $BASHSCRIPTS
-	EOS
-  echo ">> Scripts added to $INITFILE"
-else
-  echo ">> Scripts already linked"
-fi
+# rewrite initfile to fix multiple blank lines
+init_text=$(cat $initfile)
+( echo "$init_text" ; echo -e "$bash_import" ; ) | uniq > $initfile
 
+
+# --------------------------------------------------------------
+# DOTFILES : link dotfiles as hidden files to Home-Directory 
+# --------------------------------------------------------------
 echo ">> setting symlinks for dotfiles"
 for file in $CWD/dotfiles/*
 do
@@ -40,7 +47,9 @@ do
   fi
 done
 
-# link commands to ~/.local/bin
+# --------------------------------------------------------------
+# COMMANDS : link commands to ~/.local/bin
+# --------------------------------------------------------------
 mkdir -p $HOME/.local/bin 
 
 echo ">> setting symlinks for custom commands"
@@ -53,3 +62,22 @@ do
     ln -s $cmd $link
   fi
 done
+
+# --------------------------------------------------------------
+# GITCONFIG : link .gitconfig and os-specific configuration
+# linux-config is considered default
+# --------------------------------------------------------------
+git_config="$CWD/gitconfig/gitconfig"
+git_config_os="$git_config.linux"
+link="$HOME/.gitconfig"
+link_os="$link.os"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  git_config_os="gitconfig/gitconfig.macos"
+fi
+
+rm -f $link_os
+ln -s $git_config_os $HOME/.gitconfig.os
+rm -f $link
+ln -s $git_config $HOME/.gitconfig
+
