@@ -73,7 +73,7 @@ link="$HOME/.gitconfig"
 link_os="$link.os"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  git_config_os="gitconfig/gitconfig.macos"
+  git_config_os="$git_config.macos"
 fi
 
 rm -f $link_os
