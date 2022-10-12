@@ -1,0 +1,98 @@
+################################################################################
+# Attach to tmux immediately 
+################################################################################
+
+if [[ -z "$TMUX" ]] ;then
+    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+    if [[ -z "$ID" ]] ;then # if not available create a new one
+        tmux new-session
+    else
+        tmux attach-session -t "$ID" # if available attach to it
+    fi
+    exit
+fi
+
+################################################################################
+## Basic Shell Config
+################################################################################
+# Source the locale
+source $HOME/.locale
+export EDITOR=micro
+export GPG_TTY=$(tty)
+# Lines configured by zsh-newuser-install
+HISTFILE=$HOME/.histfile
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+setopt share_history          # share command history data
+
+# enable antigen
+source /usr/share/zsh/share/antigen.zsh
+antigen init $HOME/.antigenrc
+
+# enable zoxide
+eval "$(zoxide init zsh)"
+
+################################################################################
+## Software
+################################################################################
+
+# PHP Composer Globals
+PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+# add .local/bin
+export PATH="$HOME/.local/bin:$PATH"
+
+# add tfenv 
+export PATH="$HOME/.tfenv/bin:$PATH"
+
+# Setup Android Studio
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/33.0.0
+
+################################################################################
+## Aliases and Functions
+################################################################################
+# cd
+alias cd='z'
+
+# ls
+alias ls='ls -h --color=auto'
+alias la='ls -la'
+
+# force me to use micro
+alias nano=micro
+alias vi=micro
+
+# open files from terminal
+alias open="xdg-open 2>/dev/null"
+
+# cleanup python files
+pyclean () {
+    find . -type f -name "*.py[co]" -delete
+    find . -type d -name "__pycache__" -delete
+}
+
+# make aliases work with sudo
+alias sudo="sudo "
+
+# serve static files
+
+serve () {
+    python3 -m http.server 8000
+}
+
+#update machine
+alias update="topgrade"
+
+################################################################################
+## Keybyindings
+################################################################################
+bindkey '^ ' autosuggest-accept

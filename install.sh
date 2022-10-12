@@ -48,22 +48,6 @@ do
 done
 
 # --------------------------------------------------------------
-# COMMANDS : link commands to ~/.local/bin
-# --------------------------------------------------------------
-mkdir -p $HOME/.local/bin 
-
-echo ">> setting symlinks for custom commands"
-for cmd in $CWD/bin/*
-do
-  name=$(basename $cmd)
-  link=$HOME/.local/bin/$name
-  if [ ! -e $link ]; then
-    echo " >> linking $link to $cmd"
-    ln -s $cmd $link
-  fi
-done
-
-# --------------------------------------------------------------
 # GITCONFIG : link .gitconfig and os-specific configuration
 # linux-config is considered default
 # --------------------------------------------------------------

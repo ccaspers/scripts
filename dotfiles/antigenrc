@@ -1,0 +1,48 @@
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# necessary env vars
+export NVM_AUTO_USE=true
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle lukechilds/zsh-nvm
+antigen bundle fzf
+antigen bundle git
+antigen bundle pip
+antigen bundle virtualenv
+antigen bundle command-not-found
+
+# Autosuggestions
+antigen bundle zsh-users/zsh-autosuggestions
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
+antigen theme denysdovhan/spaceship-prompt spaceship
+
+# Tell Antigen that you're done.
+antigen apply
+
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  package       # Package version
+  php           # PHP section
+  node          # Node.js section
+  venv          # virtualenv section
+  docker        # docker section
+  exec_time     # Execution time
+  line_sep      # Line break
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+
+SPACESHIP_CHAR_SYMBOL=⮞
+SPACESHIP_CHAR_SUFFIX=' '
+SPACESHIP_DIR_COLOR=blue
+SPACESHIP_CHAR_COLOR_SUCCESS=white

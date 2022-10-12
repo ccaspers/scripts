@@ -20,7 +20,8 @@ antigen init $HOME/.antigenrc
 ## Software
 ################################################################################
 # node version manager
-source /usr/share/nvm/init-nvm.sh --no-use
+export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.}nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
 # PHP Composer Globals
 PATH="$HOME/.config/composer/vendor/bin:$PATH"
@@ -32,6 +33,10 @@ export PATH="$HOME/.local/bin:$PATH"
 ################################################################################
 ## Aliases and Functions
 ################################################################################
+# ls
+alias ls='ls --color=auto'
+alias la='ls -la'
+
 # open files from terminal
 alias open="xdg-open 2>/dev/null"
 
@@ -44,8 +49,11 @@ pyclean () {
 # make aliases work with sudo
 alias sudo="sudo "
 
-# alias rm, better safe than sorry
-alias rm='echo "rm is disabled, use trash or /bin/rm instead."'
+# serve static files
+
+serve () {
+    python3 -m http.server 8000
+}
 
 ################################################################################
 ## Keybyindings
